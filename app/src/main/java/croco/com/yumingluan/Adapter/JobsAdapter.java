@@ -12,10 +12,10 @@ import java.util.List;
 import croco.com.yumingluan.R;
 import croco.com.yumingluan.bean.Company;
 
-public class CompanyAdapter extends ArrayAdapter{
+public class JobsAdapter extends ArrayAdapter{
     private final int resourceId;
 
-    public CompanyAdapter(Context context, int textViewResourceId, List<Company> objects) {
+    public JobsAdapter(Context context, int textViewResourceId, List<Company> objects) {
         super(context, textViewResourceId, objects);
         resourceId = textViewResourceId;
     }

@@ -1,15 +1,23 @@
 package croco.com.yumingluan.bean;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
  * Created by Administrator on 2018/1/17 0017.
  */
-public class Company {
+public class Company implements Serializable {
     private String name;
     private String url;
     private int item;
     private List<String> job_list;
+    public Company(){
+    }
+    public Company(String name,int item){
+        this.name=name;
+        this.item=item;
+    }
+
 
     public String getName() {
         return name;
