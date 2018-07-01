@@ -1,7 +1,10 @@
 package croco.com.yumingluan;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -18,7 +21,8 @@ public class DetailActivity extends AppCompatActivity {
     TextView textView_url;
     List<String> jobs_list=new ArrayList();
     ListView listView_jobs;
-    ArrayAdapter<String> jobsAdapter;
+    JobsAdapter jobsAdapter;
+    Company company;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,15 +34,29 @@ public class DetailActivity extends AppCompatActivity {
 
         Bundle bundle=getIntent().getExtras();
         String name=bundle.getString("name");
-        Company company=(Company) bundle.getSerializable("company");
+        company=(Company) bundle.getSerializable("company");
         jobs_list=company.getJob_list();
-        jobsAdapter=new ArrayAdapter(DetailActivity.this,android.R.layout.simple_list_item_1,jobs_list);
+        jobsAdapter=new JobsAdapter(DetailActivity.this,R.layout.jobs,jobs_list);
         listView_jobs.setAdapter(jobsAdapter);
         textView_name.setText(company.getName());
         textView_item.setText(company.getItem()+"");
         textView_url.setText(company.getUrl());
 
+    }
 
+    /**
+     * 公司网址
+     * @param v
+     */
+    public void showCompanyHome(View v) {
+
+        String url=company.getUrl();
+
+        Uri uri=Uri.parse("https:"+company.getUrl());
+        //进行跳转的intent
+        Intent intent=new Intent(Intent.ACTION_VIEW,uri);
+        //进行跳转
+        startActivity(intent);
 
     }
 }

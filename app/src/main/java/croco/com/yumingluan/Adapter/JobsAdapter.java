@@ -15,18 +15,16 @@ import croco.com.yumingluan.bean.Company;
 public class JobsAdapter extends ArrayAdapter{
     private final int resourceId;
 
-    public JobsAdapter(Context context, int textViewResourceId, List<Company> objects) {
+    public JobsAdapter(Context context, int textViewResourceId, List<String> objects) {
         super(context, textViewResourceId, objects);
         resourceId = textViewResourceId;
     }
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        Company company = (Company) getItem(position); // 获取当前项的Company实例
+        String job = (String) getItem(position); // 获取当前项的Company实例
         View view = LayoutInflater.from(getContext()).inflate(resourceId, null);//实例化一个对象
-        TextView companyName = (TextView) view.findViewById(R.id.company_name);//获取该布局内的文本视图
-        TextView job_numb=(TextView)view.findViewById(R.id.number);
-        companyName.setText(company.getName());//为文本视图设置文本内容
-        job_numb.setText(company.getItem()+"");
+        TextView job_name = (TextView) view.findViewById(R.id.job_name);//获取该布局内的文本视图
+        job_name.setText(job);//为文本视图设置文本内容
         return view;
     }
 }
